@@ -1,0 +1,23 @@
+{
+  "name": "@raccoon/sanctuary",
+  "version": "0.0.1",
+  "description": "Core for Raccoon Framework",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seon-cloud/racoon-sanctuary.git"
+  },
+  "author": "Dmitrii Shevelev",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/seon-cloud/racoon-sanctuary/issues"
+  },
+  "homepage": "https://github.com/seon-cloud/racoon-sanctuary#readme",
+  "dependencies": {
+    "jest": "^26.6.3",
+    "uuid": "^8.3.1"
+  }
+}
