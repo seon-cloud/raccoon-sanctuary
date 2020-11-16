@@ -118,14 +118,27 @@ export default class Plugin extends Spirit {
      * @memberof Plugin
      */
     constructor(options) {
+        /** Инициализируем родителя */
         super(options);
 
-        this.#application = options?.application ? options.application : undefined;
+        /** Присваиваем ссылку свойству application (приложене-родитель) */
+        this.#application = options?.application
+            ? options.application 
+            : undefined;
        
-        this.#setActions(options?.actions 
+        /** Собираем действия по для объекта плагина*/
+        const actions = options?.actions 
             ? { ...options.actions, ...this.#actions }
-            : this.#actions);
+            : this.#actions;
 
+        /** Присваиваение действий текущему плагину */
+        this.#setActions(actions);
+
+        /** Проверяем есть ли опции packages в объекте options.
+         * Если есть packages - добавляем пакеты к текущему 
+         *                      плагину (присваиваем к свойству).
+         * Если нет packages - не делаем ничего.
+         */
         if (options?.packages) {
             this.#setPackages(options.packages);
         }

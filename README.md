@@ -1,2 +1,2 @@
-# -racoon-sanctuary
-Core package for Raccoon Framework
+# racoon-sanctuary
+Библиотека базовый классов

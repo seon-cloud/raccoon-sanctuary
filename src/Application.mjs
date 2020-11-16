@@ -1,5 +1,9 @@
 import Spirit from './Spirit.mjs';
 
+const CLASS_TYPE = 'function';
+const NOT_CLASS_TYPE = 'object';
+const NAME_FIELD = 'name';
+
 /**
  * @class
  * @name Application
@@ -17,7 +21,7 @@ export default class Application extends Spirit {
     /**
      * Гетер приватного поля списка плагинов приложения
      * @memberof Application
-     * @returns {Array<Object|Function>} Массив плагинов
+     * @returns {Array<object|function>} Массив плагинов
      * @public
      */
     get plugins() {
@@ -28,23 +32,22 @@ export default class Application extends Spirit {
      * @method #registerPlugin
      * @description Метод для регистрации плагина в приложении
      * @memberof Application
-     * @param {Function|Object} Plugin плагин приложения
+     * @param {function|object} Plugin плагин приложения
      * @returns {undefined}
      * @private
      */
     #registerPlugin(Plugin) {
-        const uuid = this.uuid;
         const pluginType = typeof Plugin;
     
         let plugin = undefined;
         switch(pluginType) {
-            case 'function':
+            case CLASS_TYPE:
                 const pluginOptions = (this.#pluginsOptions.hasOwnProperty(Plugin.name))
                     ? { ...this.#pluginsOptions[Plugin.name], application: this }
                     : { application: this };
                 plugin = new Plugin(pluginOptions);
                 break;
-            case 'object':
+            case NOT_CLASS_TYPE:
                 plugin = Plugin;
                 plugin.application = this;
                 break;
@@ -85,7 +88,7 @@ export default class Application extends Spirit {
                  * Если нет - формируем имя плагина как имя класса и значение текущего времен в миллесекундах,
                  *            а затем добавляем его в объект опций. 
                  */
-                if (pluginOptions.hasOwnProperty('name') == false) {
+                if (pluginOptions.hasOwnProperty(NAME_FIELD) == false) {
                     pluginOptions.name = `${pluginClass.name}_${Date.now()}`;
                 }
 

@@ -7,6 +7,7 @@ import { v1 } from 'uuid';
  * @author Dmitrii Shevelev
  */
 export default class Spirit {
+
     /**  Идентификатор объекта */
     #uuid
     /** Имя объекта */
@@ -44,7 +45,8 @@ export default class Spirit {
     }
 
     /**
-     * @method destroy
+     * @method
+     * @name destroy
      * @description Метод, который помечает объект как уничтоженный 
      * @memberof Spirit
      */
