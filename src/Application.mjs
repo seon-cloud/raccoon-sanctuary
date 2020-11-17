@@ -9,10 +9,13 @@ const NAME_FIELD = 'name';
  * @name Application
  * @extends Spirit
  * @description Класс базового приложения фреймворка Raccoon
- * @author Dmitrii Shevelev
+ * @author Dmitrii Shevelev<igrave1988@yandex.ru>
  */
 export default class Application extends Spirit {
 
+    /** Свойство, содежащее опции определенных в приложении
+     * плагинов
+     */
     #pluginsOptions
 
     /** Массив плагинов приложения */
@@ -29,17 +32,23 @@ export default class Application extends Spirit {
     }
 
     /**
-     * @method #registerPlugin
+     * @method
+     * @name registerPlugin
      * @description Метод для регистрации плагина в приложении
      * @memberof Application
      * @param {function|object} Plugin плагин приложения
-     * @returns {undefined}
+     * @returns {void}
      * @private
      */
     #registerPlugin(Plugin) {
+        /** Получаем тип плагина */
         const pluginType = typeof Plugin;
-    
+        /** Определяем пустой плагин */
         let plugin = undefined;
+        /** Проверяем полученный тип плагины.
+         * Если плагин является классом - подставляем опции (расширенные приложением) и создаём экземпляр
+         * Если плагин является объектом - регистрируем его в приложении.
+         */
         switch(pluginType) {
             case CLASS_TYPE:
                 const pluginOptions = (this.#pluginsOptions.hasOwnProperty(Plugin.name))
@@ -54,7 +63,9 @@ export default class Application extends Spirit {
             default:
                 break;
         }
-
+        /** Если переменнная плагина заполнены - добавляем 
+         * его в массив плагинов приложения
+         */
         if (plugin !== undefined) {
             this.#plugins.push(plugin);
         }
@@ -109,18 +120,24 @@ export default class Application extends Spirit {
      * @memberof Application 
      */
     constructor(options) {
+        /** Вызываем конструктор родителя */
         super(options);
-
+        /**  Получаем опции плогинов для экземпляра текущего класса.
+         * Если в опциях конструктора присутствует поле pluginsOptions - присваиваем их.
+         * Если в опциях конструктора отсутствует поле pluginsOptions - присваиваем пустой объект.
+         */
         this.#pluginsOptions = options?.pluginsOptions 
             ? options.pluginsOptions
             : {};
-
+        /** При наличии опции - регистрирум плагины
+         * Если в опциях конструктора присутствует поле plugins - регистрируем плагины в приложении.
+         * Если в опциях конструктора отсутствует поле plugins - не делаем ничего.
+         */
         if (options?.plugins) {
             options.plugins.forEach(plugin => {
                 this.#registerPlugin(plugin);
             });
         }
-
         /** Проверяем, нужны ли приложения дополнительные плагины.
          * Если есть опция дополнительных плагинов - регистрируем дополнительные плагины, как плагины приложения.
          * Если нет опции дополнительных плагинов - ничего не делаем
