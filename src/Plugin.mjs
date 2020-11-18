@@ -93,7 +93,9 @@ export default class Plugin extends Spirit {
     get call() {
         const callObj = {};
         this.#application.plugins.forEach(plugin => {
-            callObj[plugin.name] = plugin;
+            if (plugin.alive) {
+                callObj[plugin.name] = plugin.actions;
+            }
         });
         return callObj;
     }

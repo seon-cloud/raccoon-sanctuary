@@ -1,7 +1,7 @@
 # Raccoon Sanctuary (racoon-sanctuary)
 Библиотека базовых классов для создания приложений для экосистемы SEON.
 ## Установка
-```npm install raccoon-sacntuary```
+```npm install raccoon-sanctuary```
 ## Запуск тестов
 ```npm run test```
 ## Документация
