@@ -1,6 +1,6 @@
 {
   "name": "raccoon-sanctuary",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "Core for Raccoon Framework",
   "main": "index.mjs",
   "scripts": {
