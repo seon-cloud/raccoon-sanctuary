@@ -1,6 +1,6 @@
 {
   "name": "raccoon-sanctuary",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "description": "Core for Raccoon Framework",
   "main": "index.mjs",
   "scripts": {
@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "ava": "^3.13.0",
-    "ava-spec": "^1.1.1",
     "c8": "^7.3.5",
     "eslint": "^7.13.0"
   }

@@ -1,47 +1,40 @@
 import Spirit from '../src/Spirit.mjs';
-import avaspec from 'ava-spec';
-
-const { describe } = avaspec;
+import test from 'ava';
 
 const TEST_NAME = 'TestSpirit'
 
-describe('[ЗАГРУЗКА] Spirit', it => {
-    it('<ИЗ ФАЙЛА> Импорт из .mjs', test=> {
-        test.not(Spirit, undefined);
-    });
+test('[Загрузка из файла] Импорт из .mjs', t => {
+    t.not(Spirit, undefined);
 });
 
-describe('[ФУНКЦИОНАЛЬНОСТЬ #1] Spirit', it => {
-    it('<Создание объекта> Создание объекта без опций', test=> {
+test('[Создание объекта #1] Создание объекта без опций', 
+    t => {
         const spirit = new Spirit();
-        test.not(spirit, undefined);
-    });
-
-    it('<Создание объекта> Создание объекта с опциями', test=> {
-        const spirit = new Spirit({ name: TEST_NAME });
-        test.is(spirit.name, TEST_NAME);
-    });
+        t.not(spirit, undefined);
 });
 
-describe('[ФУНКЦИОНАЛЬНОСТЬ #2] Spirit', it => {
-    it('<Проверка публичных методов #1> Метод alive', test=> {
-        const spirit = new Spirit();
-        test.true(spirit.alive)    
-    });
+test('[Создание объекта #2] Создание объекта с опциями', t => {
+    const spirit = new Spirit({ name: TEST_NAME });
+    t.is(spirit.name, TEST_NAME);
+});
 
-    it('<Проверка публичных методов #2> Метод destroy', test => {
-        const spirit = new Spirit();
-        spirit.destroy();
-        test.false(spirit.alive);
-    });
+test('[Проверка публичных методов #1] Метод alive', t => {
+    const spirit = new Spirit();
+    t.true(spirit.alive)    
+});
 
-    it('<Проверка публичных методов #3> Гетер name', test=> {
-        const spirit = new Spirit();
-        test.not(spirit.name, undefined);
-    });
+test('[Проверка публичных методов #2] Метод destroy', t => {
+    const spirit = new Spirit();
+    spirit.destroy();
+    t.false(spirit.alive);
+});
 
-    it('<Проверка публичных методов #4> Гетер uuid', test=> {
-        const spirit = new Spirit();
-        test.not(spirit.uuid, undefined);
-    });
+test('[Проверка публичных методов #3] Гетер name', t => {
+    const spirit = new Spirit();
+    t.not(spirit.name, undefined);
+});
+
+test('[Проверка публичных методов #4] Гетер uuid', t => {
+    const spirit = new Spirit();
+    t.not(spirit.uuid, undefined);
 });
